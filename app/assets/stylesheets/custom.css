@@ -1,9 +1,5 @@
 body {
-    background: url('backtile.png') repeat-x fixed;
-    /*-webkit-background-size: cover;
-    -moz-background-size:    cover;
-    -o-background-size:      cover;
-    background-size:         cover;*/
+    background: url('backtile.png') repeat-x;
 }
 
 @font-face {
@@ -21,7 +17,7 @@ body {
 }
 
 header {
-    margin-top: 20px;
+
 }
 
 nav ul {
@@ -29,8 +25,11 @@ nav ul {
     padding: 0;
 }
 
-nav ul li {
+nav ul li, .contacts {
     font-size: 16px;
+}
+
+nav ul li {
     list-style-type: none;
     display: inline-block;
     margin: 40px 3em 20px 3em;
@@ -41,13 +40,17 @@ nav sup {
     font-weight: bold;
 }
 
-nav a:link, nav a:visited, nav a:active, nav a:hover {
+.link:link, .link:visited, .link:active, .link:hover {
     color: black;
     font-weight: bold;
     text-decoration: none;
 }
 
-hr, .container {
+hr {
+    margin: 0;
+}
+
+hr, .container, .content {
     width: 829px;
 }
 
@@ -58,9 +61,22 @@ hr {
 
 .content {
     height: 400px;
+    display: table;
 }
 
 .disabled-link:link, .disabled-link:visited, .disabled-link:active, .disabled-link:hover {
     color: gray;
     cursor:default;
+}
+
+#copyright {
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+
+.contacts {
+    line-height: 4em;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
 }

@@ -5,10 +5,10 @@
   <header>
       <nav>
           <ul>
-            <li><%= link_to "главная", root_path %></li>
-            <li><%= link_to "портфолио", portfolio_path %></li>
+            <li><%= link_to "главная", root_path, :class => 'link' %></li>
+            <li><%= link_to "портфолио", portfolio_path, :class => 'link' %></li>
             <li><%= link_to "продукция", production_path, :class => 'disabled-link' %><sup>+</sup></li>
-            <li><%= link_to "контакты", contacts_path %></li>
+            <li><%= link_to "контакты", contacts_path, :class => 'link' %></li>
         </ul>
       </nav>
   </header>
