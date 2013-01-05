@@ -1,4 +1,18 @@
 Tauro::Application.routes.draw do
+  # get "pages/home"
+
+  # get "pages/portfolio"
+
+  # get "pages/production"
+
+  # get "pages/contacts"
+
+  match '/portfolio', :to => 'pages#portfolio'
+  match '/production', :to => 'pages#production'
+  match '/contacts', :to => 'pages#contacts'
+
+  root :to => 'pages#home'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

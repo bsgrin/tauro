@@ -1,0 +1,66 @@
+body {
+    background: url('backtile.png') repeat-x fixed;
+    /*-webkit-background-size: cover;
+    -moz-background-size:    cover;
+    -o-background-size:      cover;
+    background-size:         cover;*/
+}
+
+@font-face {
+    font-family: 'Century Gothic';
+    src: url('../fonts/CenturyGothic.ttf');
+}
+
+.container {
+	text-align: center;
+    font-family: 'Century Gothic', 'Georgia', serif;
+}
+
+#logo {
+    margin-top: 20px;
+}
+
+header {
+    margin-top: 20px;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    font-size: 16px;
+    list-style-type: none;
+    display: inline-block;
+    margin: 40px 3em 20px 3em;
+}
+
+nav sup {
+    color: red;
+    font-weight: bold;
+}
+
+nav a:link, nav a:visited, nav a:active, nav a:hover {
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+hr, .container {
+    width: 829px;
+}
+
+hr {
+    height: 2px;
+    background: black;
+}
+
+.content {
+    height: 400px;
+}
+
+.disabled-link:link, .disabled-link:visited, .disabled-link:active, .disabled-link:hover {
+    color: gray;
+    cursor:default;
+}
