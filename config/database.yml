@@ -73,10 +73,10 @@ test:
   username: franza
   password: test
 
-# production:
-#   adapter: postgresql
-#   encoding: unicode
-#   database: taurodb_production
-#   pool: 5
-#   username: franza
-#   password: 321pf,snsq123
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: taurodb
+  pool: 5
+  username: franza
+  password: 321pf,snsq123
