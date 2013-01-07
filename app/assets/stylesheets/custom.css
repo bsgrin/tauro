@@ -51,7 +51,7 @@ hr {
 }
 
 hr, .container, .content {
-    width: 829px;
+    width: 849px;
 }
 
 hr {
@@ -74,9 +74,16 @@ hr {
     margin-top: 1em;
 }
 
-.contacts {
-    line-height: 4em;
+.content .vcentered {
     display: table-cell;
     vertical-align: middle;
+}
+
+.vcentered img {
+    display: inherit;
+}
+
+.contacts {
+    line-height: 4em;
     text-align: center;
 }

@@ -8,7 +8,7 @@ Tauro::Application.routes.draw do
   # get "pages/contacts"
 
   match '/portfolio', :to => 'pages#portfolio'
-  match '/production', :to => 'pages#production'
+  # match '/production', :to => 'pages#production'
   match '/contacts', :to => 'pages#contacts'
 
   root :to => 'pages#home'

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Tauro</title>
+  <title>THEoREticAL pART</title>
   <!--[if lt IE 9]>	
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
@@ -9,7 +9,9 @@
   <%= stylesheet_link_tag 'blueprint/print',  :media => 'print' %>
   <!--[if lt IE 8]><%= stylesheet_link_tag 'blueprint/ie' %><![endif]-->
   <%= stylesheet_link_tag 'custom', :media => 'screen' %>
+  <%= javascript_include_tag "//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" %>
   <%= csrf_meta_tags %>
+  <%= favicon_link_tag "/favicon.ico" %>
 </head>
 <body>
 
@@ -23,8 +25,6 @@
 
     <%= render 'layouts/footer' %>
 	</div>
-
-
 
 </body>
 </html>

@@ -1,1 +1,22 @@
-<h1>Дом. Милый и нежный.</h1>
+<div class="vcentered">
+    <% @banners.each do |b| %>
+      <div id="<%= b.name %>" style="display:none;">
+        <%= image_tag(b.image_path) %>
+      </div>
+    <% end %>
+</div>
+
+<script type="text/javascript">
+
+function fadeElem(elems, index) {
+  var elem = $('#' + elems[index].id);
+  elem.fadeIn(400, function () {
+    setTimeout(function () { elem.fadeOut(400, function () {
+      fadeElem(elems, (index + 1) % elems.length);
+    }); }, 5000)
+  });
+}
+
+fadeElem($('.content > .vcentered > div'), 0);
+
+</script>
