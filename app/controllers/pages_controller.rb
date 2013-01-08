@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def home
-    @banners = Banner.all
+    @img_slides = ImageSlide.order("priority DESC, updated_at DESC")
   end
 
   def portfolio

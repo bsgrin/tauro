@@ -1,6 +1,7 @@
 class ImageSlide < ActiveRecord::Base
   has_attached_file :source,
-                    :path => ":rails_root/app/assets/images/slides/:filename"
+                    :path => ":rails_root/app/assets/images/slides/:filename",
+                    :url => "/assets/slides/:filename"
   attr_accessible :alt, :name, :priority, :source
 
   validates :name, :presence => true
