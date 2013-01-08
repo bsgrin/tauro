@@ -1,8 +1,10 @@
 <div class="vcentered">
-    <% @img_slides.each do |slide| %>
-      <div id="<%= slide.name %>" style="display:none;">
-        <%= image_tag slide.source.url, :alt => slide.alt %>
-      </div>
+    <%= link_to portfolio_path do %>
+      <% @img_slides.each do |slide| %>
+        <div id="<%= slide.name %>" style="display:none;">
+          <%= image_tag slide.source.url, :alt => slide.alt %>
+        </div>
+      <% end %>
     <% end %>
 </div>
 
@@ -17,6 +19,6 @@ function fadeElem(elems, index) {
   });
 }
 
-fadeElem($('.content > .vcentered > div'), 0);
+fadeElem($('.content > .vcentered > a > div'), 0);
 
 </script>
