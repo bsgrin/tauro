@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class BannerTest < ActiveSupport::TestCase
+class ImageSlideTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

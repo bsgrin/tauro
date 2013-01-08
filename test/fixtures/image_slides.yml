@@ -2,12 +2,12 @@
 
 one:
   name: MyString
-  image_path: MyString
-  text: MyText
-  raw_html: MyText
+  source: 
+  alt: MyString
+  priority: 1
 
 two:
   name: MyString
-  image_path: MyString
-  text: MyText
-  raw_html: MyText
+  source: 
+  alt: MyString
+  priority: 1
