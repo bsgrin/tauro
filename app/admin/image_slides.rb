@@ -1,6 +1,6 @@
 ActiveAdmin.register ImageSlide do
 
-  form do |f|
+  form :html => { :enctype => "multipart/form-data" } do |f|
     f.inputs "ImageSlide" do
       f.input :name
       f.input :source, :as => :file

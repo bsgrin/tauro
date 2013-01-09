@@ -30,9 +30,19 @@ nav ul li, .contacts {
 }
 
 nav ul li {
+    margin: 40px 3em 20px 3em;
+}
+
+nav ul li, .social ul li {
     list-style-type: none;
     display: inline-block;
-    margin: 40px 3em 20px 3em;
+}
+
+.social ul li a div {
+    background-size: contain;
+    background: url("social.png");
+    width: 24px;
+    height: 24px;
 }
 
 nav sup {
@@ -86,4 +96,8 @@ hr {
 .contacts {
     line-height: 4em;
     text-align: center;
+}
+
+footer {
+    margin-top: 20px;
 }
