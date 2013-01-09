@@ -2,6 +2,13 @@ body {
     background: url('backtile.png') repeat-x;
 }
 
+#logo {
+    background: url('logo.png');
+    height: 134px;
+    width: 292px;
+    margin: 0 auto;
+}
+
 @font-face {
     font-family: 'Century Gothic';
     src: url('../fonts/CenturyGothic.ttf');
