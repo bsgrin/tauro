@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130108182438) do
+ActiveRecord::Schema.define(:version => 20130115200958) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -46,20 +46,35 @@ ActiveRecord::Schema.define(:version => 20130108182438) do
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
 
+  create_table "arts", :force => true do |t|
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.integer  "gallery_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  add_index "arts", ["gallery_id"], :name => "index_arts_on_gallery_id"
+
+  create_table "galleries", :force => true do |t|
+    t.string   "name"
+    t.text     "text"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "image_slides", :force => true do |t|
-    t.string   "name",                                       :null => false
+    t.string   "name",                               :null => false
     t.string   "source_file_name"
     t.string   "source_content_type"
     t.integer  "source_file_size"
     t.datetime "source_updated_at"
-    t.string   "{:null=>false}_file_name"
-    t.string   "{:null=>false}_content_type"
-    t.integer  "{:null=>false}_file_size"
-    t.datetime "{:null=>false}_updated_at"
     t.string   "alt"
-    t.integer  "priority",                    :default => 0, :null => false
-    t.datetime "created_at",                                 :null => false
-    t.datetime "updated_at",                                 :null => false
+    t.integer  "priority",            :default => 0, :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
   end
 
 end
