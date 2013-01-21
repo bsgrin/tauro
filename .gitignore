@@ -22,6 +22,5 @@ log/*.log
 doc/
 *.swp
 *~
-app/assets/images/slides
 .project
 .DS_Store

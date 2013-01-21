@@ -3,10 +3,7 @@ ActiveAdmin.register Gallery do
     f.inputs do
       f.input :name
       f.input :text
-
-      f.has_many :arts do |p|
-        p.input :image
-      end
+      f.input :folder, :hint => "You can leave this field blank then Name field will be used."
     end
 
     f.buttons

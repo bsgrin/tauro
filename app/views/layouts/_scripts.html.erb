@@ -1,0 +1,31 @@
+<script type="text/javascript">
+  
+  function fadeElem(elems, index) {
+    var elem = $( '#' + elems[index].id );
+    elem.fadeIn(400, function () {
+      setTimeout(function () { elem.fadeOut(400, function () {
+        fadeElem( elems, (index + 1) % elems.length );
+      }); }, 5000)
+    });
+  }
+
+  $(function () {
+    //onclick on portfolio gray images
+    var grayImages = $('.gray');
+    var previousColored
+    $.each( grayImages, function (index) {
+      $(grayImages[index]).click( function () { 
+
+        var clickedImage = $(this);
+        if (previousColored)
+          previousColored.addClass("gray").removeClass("colored")
+        clickedImage.removeClass("gray").addClass("colored")
+        previousColored = clickedImage
+
+        $('#mainArt').attr('src', clickedImage.attr('src'))
+
+      })
+    })
+  })
+
+</script>

@@ -1,0 +1,46 @@
+
+
+<div class="side-menu">
+  <div class="inner">
+    <% @galleries.each do |g| %>
+      <p><%= link_to g.name, g, :class => 'link' %></p>
+    <% end %>
+  </div>
+</div>
+
+<div>
+  <% arts = get_gallery_arts(@gallery_to_show) %>
+
+  <div class="vcentered">
+    <%= image_tag arts[0], :id => "mainArt" %>
+  </div>
+
+  <div class="vcentered">
+
+    <div class="gallery-grid">
+    
+    <div class="desc" style="vertical-align: top;">
+      <p><%= @gallery_to_show.text %></p>
+    </div>
+
+    <div id="thumb-row">
+      <div>
+      <% [arts[10..20], arts[0..9]].each do |pack_of_arts| %>
+          <% next if pack_of_arts.nil? || pack_of_arts.empty? %>
+          <div class="thumb-pack">
+            <% pack_of_arts.each do |art| %>
+              <div>
+                <div class="thumb">
+                  <%= image_tag art, :class => "gray" %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <br>
+      <% end %>
+      </table>
+    </div>
+    </div>
+
+  </div>
+</div>

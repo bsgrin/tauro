@@ -1,5 +1,5 @@
 <div class="vcentered">
-    <%= link_to portfolio_path do %>
+    <%= link_to galleries_path do %>
       <% @img_slides.each do |slide| %>
         <div id="<%= slide.name %>" style="display:none;">
           <%= image_tag slide.source.url, :alt => slide.alt %>
@@ -10,15 +10,7 @@
 
 <script type="text/javascript">
 
-function fadeElem(elems, index) {
-  var elem = $('#' + elems[index].id);
-  elem.fadeIn(400, function () {
-    setTimeout(function () { elem.fadeOut(400, function () {
-      fadeElem(elems, (index + 1) % elems.length);
-    }); }, 5000)
-  });
-}
-
-fadeElem($('.content > .vcentered > a > div'), 0);
+//carousel
+fadeElem( $('.content > .vcentered > a > div'), 0 );
 
 </script>

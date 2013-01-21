@@ -76,7 +76,7 @@ hr {
     background: black;
 }
 
-.content {
+.gallery-grid, .content {
     height: 400px;
     display: table;
 }
@@ -97,7 +97,7 @@ hr {
 }
 
 .vcentered img {
-    display: inherit;
+    display: block;
 }
 
 .contacts {
@@ -107,4 +107,75 @@ hr {
 
 footer {
     margin-top: 20px;
+}
+
+.side-menu {
+    height: 400px; 
+    display: table; 
+    float: left; 
+    margin-left: -100px;
+}
+
+.side-menu .inner {
+    display: table-cell; 
+    vertical-align: middle;
+}
+
+.vcentered .thumbs {
+    vertical-align: top; 
+}
+
+/* SHOW GALLERY */
+
+.desc {
+    display: table-cell;
+    vertical-align: top;
+    padding-top: 5px; 
+    text-align: justify; 
+    text-indent: 120px; 
+    padding-left: 6px;
+}
+
+#thumb-row {
+    display: table-row;
+    line-height: 0em;
+}
+
+#thumb-row > div {
+    display: table-cell; 
+    vertical-align: bottom;
+}
+
+.thumb-pack {
+    display: table-row;
+    padding-bottom: 5px;
+}
+
+.thumb-pack > div {
+    display: table-cell;
+    padding-bottom: 5px;
+}
+
+.thumb {
+    display: block;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    padding-left: 6px;
+}
+
+.gray, .colored {
+    width: 50px; 
+    margin: -9.5px 0 0 0;
+}
+
+.gray {
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
+    filter: gray; /* IE6-9 */
+    -webkit-filter: grayscale(100%); /* Chrome 19+, Safari 6+, Safari 6+ iOS */
+}
+
+.colored, .gray:hover {
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
+    -webkit-filter: grayscale(0%);
 }
