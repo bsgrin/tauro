@@ -2,7 +2,7 @@
   <div class="side-menu">
     <div class="inner">
       <% @galleries.each do |g| %>
-        <p><%= link_to g.name, g, :class => 'link', :remote => true %></p>
+        <p><%= link_to g.name, g, :class => 'link', :remote => false %></p>
       <% end %>
     </div>
   </div>
