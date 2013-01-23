@@ -8,5 +8,9 @@ class GalleriesController < ApplicationController
   def show
     @galleries = Gallery.all
     @gallery_to_show = Gallery.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.js { render :layout => false }
+    end
   end
 end
