@@ -1,47 +1,45 @@
-<div id="show_gallery">
-  <% if @galleries && !@galleries.empty? && !@gallery_to_show.nil? %>
-    <div class="side-menu">
-      <div class="inner">
-        <% @galleries.each do |g| %>
-          <p><%= link_to g.name, g, :class => 'link', :remote => false %></p>
-        <% end %>
-      </div>
+<% if @galleries && !@galleries.empty? && !@gallery_to_show.nil? %>
+  <div class="side-menu">
+    <div class="inner">
+      <% @galleries.each do |g| %>
+        <p><%= link_to g.name, g, :class => 'link', :remote => true %></p>
+      <% end %>
+    </div>
+  </div>
+
+  <div>
+    <% arts = get_gallery_arts(@gallery_to_show) %>
+    <% art_packs = [arts[8..15], arts[0..7]] %>
+
+    <div class="vcentered">
+      <%= image_tag art_packs[0][0][:medium], :id => "mainArt" %>
     </div>
 
-    <div>
-      <% arts = get_gallery_arts(@gallery_to_show) %>
-      <% art_packs = [arts[8..15], arts[0..7]] %>
+    <div class="vcentered">
 
-      <div class="vcentered">
-        <%= image_tag art_packs[0][0][:medium], :id => "mainArt" %>
-      </div>
-
-      <div class="vcentered">
-
-        <div class="gallery-grid">
-        
+      <div class="gallery-grid">
+      
         <div class="desc" style="vertical-align: top;">
           <p><%= @gallery_to_show.text %></p>
         </div>
 
         <div id="thumb-row">
           <div>
-          <% art_packs.each_with_index do |pack_of_arts, i| %>
+            <% art_packs.each_with_index do |pack_of_arts, i| %>
               <% next if pack_of_arts.nil? || pack_of_arts.empty? %>
-              <div class="thumb-pack">
-                <% pack_of_arts.each_with_index do |art, j| %>
-                  <div>
-                    <%= image_tag art[:small], :class => "thumb #{i + j == 0 ? 'colored' : 'gray'}", :onclick => "grayImages(\"#{image_path art[:small]}\", \"#{image_path art[:medium]}\")" %>
-                  </div>
-                <% end %>
-              </div>
-              <br>
-          <% end %>
-          </table>
-        </div>
+                <div class="thumb-pack">
+                  <% pack_of_arts.each_with_index do |art, j| %>
+                    <div>
+                      <%= image_tag art[:small], :class => "thumb #{i + j == 0 ? 'colored' : 'gray'}", :onclick => "grayImages(\"#{image_path art[:small]}\", \"#{image_path art[:medium]}\")" %>
+                    </div>
+                  <% end %>
+                </div>
+                <br>
+            <% end %>
+          </div>
         </div>
 
       </div>
     </div>
-  <% end %>
-</div>
+  </div>
+<% end %>
