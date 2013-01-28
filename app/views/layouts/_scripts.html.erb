@@ -14,6 +14,9 @@
   }
 
   function grayImages (small, medium) {
+    var mainArt = $('#mainArt')
+    if (mainArt.attr('src') === medium)
+      return
     var smallImage = $('img[src="' + small + '"]');
     var mediumImage = $('img[src="' + medium + '"]')
     var allColored = $(".colored");
@@ -22,12 +25,17 @@
     })
     smallImage.removeClass('gray').addClass('colored')
 
-    var mainArt = $('#mainArt')
     mainArt.fadeTo(400, 0.01, function () {
       mainArt.attr('src', medium)
-      mainArt.fadeTo(400, 1)
     })    
     
   }
+
+  $(function () {
+    var mainArt = $('#mainArt')
+    mainArt.load(function() {  
+      mainArt.fadeTo(400, 1)
+    });  
+  })
 
 </script>
