@@ -5,6 +5,10 @@ module GalleriesHelper
   #   arts.map! { |a| "galleries/#{gallery.folder}/#{a[/[^\/]+?\.\w+?$/]}" }.sort
   # end
 
+  def get_image_path folder, path, size
+    "assets/galleries/#{folder}/#{size}/" + path[/[^\/]+?\.\w+?$/]
+  end
+
   def get_gallery_arts(gallery)
     return [] if gallery.nil?
 
@@ -15,9 +19,17 @@ module GalleriesHelper
     arts = art_names.map do |an|
       dirs.inject({}) do |h, dir|
         dir = dir[/[^\/]+?$/]
-        h[dir.to_sym] = "galleries/#{gallery.folder}/#{dir}/#{an[/[^\/]+?\.\w+?$/]}"; 
+        h[dir.to_sym] =  "galleries/#{gallery.folder}/#{dir}/#{an[/[^\/]+?\.\w+?$/]}"; 
         h
       end
     end
+  end
+
+  def preloaded_images(gallery, size)
+    return '[]' if gallery.nil?
+
+    images = Dir["app/assets/images/galleries/#{gallery.folder}/#{size}/*"]
+
+    "[#{images.map { |image| "'" + (get_image_path gallery.folder, image, size) + "'" }.join(', ')}]".html_safe
   end
 end

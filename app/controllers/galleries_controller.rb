@@ -1,8 +1,6 @@
 class GalleriesController < ApplicationController
   def index
-    @galleries = Gallery.all
-    @gallery_to_show = Gallery.all.sample
-    # need to handle the case when id is not valid
+    redirect_to :action => 'show', :id => Gallery.all.sample.id
   end
 
   def show

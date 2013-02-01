@@ -32,7 +32,21 @@
     })
   }
 
-  $(function () {
-  })
+  function preloadImages(imagesToPreload) {
+    document.preloaded_images = []
+    $.each(imagesToPreload, function(index) {
+      var image = new Image
+      image.src = imagesToPreload[index]
+      document.preloaded_images.push(image)
+    })
+  }
+
+  jQuery(function() {
+    $(".link-to-gallery")
+      .on("ajax:complete", function(xhr, status, error) {
+        var imagesToPreload = <%= preloaded_images @gallery_to_show, :medium %>
+        preloadImages(imagesToPreload)
+      });
+  });
 
 </script>

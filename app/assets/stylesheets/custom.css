@@ -162,6 +162,7 @@ footer {
     height: 65px;
     overflow: hidden;
     padding-left: 5px;
+    cursor: pointer;
 }
 
 .gray {
