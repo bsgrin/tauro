@@ -32,21 +32,19 @@
     })
   }
 
-  function preloadImages(imagesToPreload) {
-    document.preloaded_images = []
+  function preloadImages(galleryID, imagesToPreload) {
+    if (!document.preloaded_images)
+      document.preloaded_images = []
+    if (document.preloaded_images[galleryID] && document.preloaded_images[galleryID].length > 0)
+      return
+
     $.each(imagesToPreload, function(index) {
+      if (!document.preloaded_images[galleryID])
+        document.preloaded_images[galleryID] = []
       var image = new Image
       image.src = imagesToPreload[index]
-      document.preloaded_images.push(image)
+      document.preloaded_images[galleryID].push(image)
     })
   }
-
-  jQuery(function() {
-    $(".link-to-gallery")
-      .on("ajax:complete", function(xhr, status, error) {
-        var imagesToPreload = <%= preloaded_images @gallery_to_show, :medium %>
-        preloadImages(imagesToPreload)
-      });
-  });
 
 </script>

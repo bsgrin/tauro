@@ -31,3 +31,9 @@
 
   </div>
 </div>
+
+<script type="text/javascript">
+  var imagesToPreload = <%= preloaded_images @gallery_to_show, :medium %>
+  if (imagesToPreload.length != 0)
+    preloadImages(<%= @gallery_to_show.id %>, imagesToPreload)
+</script>
