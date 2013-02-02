@@ -13,12 +13,20 @@
     })
   }
 
-  function grayImages (small, medium) {
+  function grayImages (small, medium, galleryID, imageIndex) {
     var mainArt = $('#mainArt')
-    // if (mainArt.attr('src') === medium)
-    //   return
-    var smallImage = $('img[src="' + small + '"]');
-    var mediumImage = $('img[src="' + medium + '"]')
+    var preloadedImages = document.preloaded_images
+    var preloadedExist = !!(preloadedImages && preloadedImages[galleryID])
+    var smallImage, newArt
+
+    if (preloadedExist) {
+      smallImage = $('.thumb-' + imageIndex)
+      newArt = $(preloadedImages[galleryID][imageIndex])
+    } else {
+      smallImage = $('img[src="' + small + '"]');
+      newArt = $('img[src="' + medium + '"]')
+    }
+
     var allColored = $(".colored");
     $.each(allColored, function (index) { 
       $(allColored[index]).addClass("gray").removeClass("colored")
@@ -26,9 +34,17 @@
     smallImage.removeClass('gray').addClass('colored')
 
     mainArt.fadeTo(400, 0.01, function () {
-      mainArt.attr('src', medium).one('load', function() {  
-        mainArt.fadeTo(400, 1)
-      })
+      if (preloadedExist) {
+        newArt
+          .attr('id', mainArt.attr('id'))
+          .css('opacity', 0.01)
+        $('#mainArtContainer').empty().append(newArt)
+        newArt.fadeTo(400, 1)
+      } else {
+        mainArt.attr('src', medium).one('load', function() {  
+          mainArt.fadeTo(400, 1)
+        })
+      }
     })
   }
 
@@ -46,5 +62,11 @@
       document.preloaded_images[galleryID].push(image)
     })
   }
+
+  // $(function () {
+  //   $('.link-to-gallery').on("ajax:complete", function (xhr, status, error) {
+  //     var a = xhr
+  //   })
+  // })
 
 </script>

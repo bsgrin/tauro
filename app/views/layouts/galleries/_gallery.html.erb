@@ -1,7 +1,8 @@
 <% arts = get_gallery_arts(@gallery_to_show) %>
 <% art_packs = [arts[8..15], arts[0..7]] %>
+<% pack_count = art_packs.count %>
 
-<div class="vcentered">
+<div id="mainArtContainer" class="vcentered">
   <%= image_tag art_packs[0][0][:medium], :id => "mainArt" %>
 </div>
 
@@ -20,7 +21,11 @@
             <div class="thumb-pack">
               <% pack_of_arts.each_with_index do |art, j| %>
                 <div>
-                  <%= image_tag art[:small], :class => "thumb #{i + j == 0 ? 'colored' : 'gray'}", :onclick => "grayImages(\"#{image_path art[:small]}\", \"#{image_path art[:medium]}\")" %>
+                  <% image_index = (pack_count - i - 1) * 8 + j %>
+                  <% image_class = "thumb-#{image_index} #{i + j == 0 ? 'colored' : 'gray'}" %>
+                  <% image_onclick = "grayImages(\"#{image_path art[:small]}\", \"#{image_path art[:medium]}\", #{@gallery_to_show.id}, #{image_index})" %>
+
+                  <%= image_tag art[:small], :class => image_class, :onclick => image_onclick %>
                 </div>
               <% end %>
             </div>

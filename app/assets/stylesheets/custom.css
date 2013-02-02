@@ -156,7 +156,7 @@ footer {
     padding-bottom: 5px;
 }
 
-.thumb {
+img[class|="thumb"] {
     display: block;
     width: 65px;
     height: 65px;

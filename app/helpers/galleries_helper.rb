@@ -15,7 +15,7 @@ module GalleriesHelper
     dirs = Dir["app/assets/images/galleries/#{gallery.folder}/*"]
     return [] if dirs.empty?
 
-    art_names = Dir[dirs[0] + '/*']
+    art_names = Dir[dirs[0] + '/*'].sort
     arts = art_names.map do |an|
       dirs.inject({}) do |h, dir|
         dir = dir[/[^\/]+?$/]
@@ -30,6 +30,6 @@ module GalleriesHelper
 
     images = Dir["app/assets/images/galleries/#{gallery.folder}/#{size}/*"]
 
-    "[#{images.map { |image| "'" + (get_image_path gallery.folder, image, size) + "'" }.join(', ')}]".html_safe
+    "[#{images.map { |image| "'" + (get_image_path gallery.folder, image, size) + "'" }.sort.join(', ')}]".html_safe
   end
 end
