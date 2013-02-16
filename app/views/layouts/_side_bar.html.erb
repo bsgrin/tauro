@@ -1,0 +1,24 @@
+<% if @galleries && !@galleries.empty? && !@gallery_to_show.nil? %>
+  <div class="side-bar">
+    <div class="inner">
+      <% @galleries.each do |g| %>
+        <% is_active = @gallery_to_show.id == g.id %>
+        <p><%= link_to g.name, g, :class => 'link link-to-gallery' + (is_active ? ' active-g' : ''), :remote => true %></p>
+      <% end %>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    function totalHeight (node) {
+      // node = $(node)
+      return parseInt(node.css('height')) + parseInt(node.css('margin-top')) + parseInt(node.css('margin-bottom'))
+    }
+
+    var sideBar = $('.side-bar')
+    var sideBarTop = totalHeight($('#logo')) + totalHeight($('header')) + totalHeight($('.content')) / 2 - 
+      totalHeight(sideBar) / 2
+
+    sideBar.css('top', sideBarTop)
+  </script>
+
+<% end %>

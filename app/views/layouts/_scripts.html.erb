@@ -1,7 +1,6 @@
 <script type="text/javascript">
   
-  // var previousColored = null
-
+  //handles fading of the thumbnails
   function fadeElem(elems, index) {
     var elem = $( '#' + elems[index].id )
     elem.fadeIn(400, function () {
@@ -13,6 +12,7 @@
     })
   }
 
+  //handles fading and grayscale of images
   function grayImages (small, medium, galleryID, imageIndex) {
     var mainArt = $('#mainArt')
     var preloadedImages = document.preloaded_images
@@ -48,6 +48,7 @@
     })
   }
 
+  //preload big images of galleries
   function preloadImages(galleryID, imagesToPreload) {
     if (!document.preloaded_images)
       document.preloaded_images = []
@@ -63,10 +64,22 @@
     })
   }
 
-  // $(function () {
-  //   $('.link-to-gallery').on("ajax:complete", function (xhr, status, error) {
-  //     var a = xhr
-  //   })
-  // })
+  //adjust LEFT of the main container and WIDTH of side bar
+  function adjustWidths() {
+    var container = $('#container')
+    var left = ( screen.width - container.width() ) / 2;
+    container.css('left', left)
+    $('.side-bar').css('width', left)
+  }
+
+  $(function () {
+    adjustWidths()
+
+    var linksToGalleries = $('.link-to-gallery')
+    linksToGalleries.on("ajax:complete", function (xhr, status, error) {
+      linksToGalleries.removeClass('active-g')
+      $(this).addClass('active-g')
+    })
+  })
 
 </script>

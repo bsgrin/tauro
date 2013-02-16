@@ -1,5 +1,6 @@
 body {
     background: url('backtiles.jpg') repeat-x;
+    /*margin-top: -32px;*/
 }
 
 #logo {
@@ -17,6 +18,13 @@ body {
 .container {
 	text-align: center;
     font-family: 'Century Gothic', 'Georgia', serif;
+    position: absolute;
+}
+
+.side-bar {
+    position: absolute;
+    top: 0;
+    text-align: center;
 }
 
 #logo {
@@ -61,6 +69,10 @@ nav sup {
     color: black;
     font-weight: bold;
     text-decoration: none;
+}
+
+.active-g {
+    font-size: 14px;
 }
 
 hr {
