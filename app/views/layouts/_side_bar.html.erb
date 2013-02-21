@@ -1,10 +1,7 @@
 <% if @galleries && !@galleries.empty? && !@gallery_to_show.nil? %>
   <div class="side-bar">
     <div class="inner">
-      <% @galleries.each do |g| %>
-        <% is_active = @gallery_to_show.id == g.id %>
-        <p><%= link_to g.name, g, :class => 'link link-to-gallery' + (is_active ? ' active-g' : ''), :remote => true %></p>
-      <% end %>
+      <%= gallery_lister(@galleries, @gallery_to_show).html_safe %>
     </div>
   </div>
 

@@ -1,10 +1,4 @@
 module GalleriesHelper
-  # def get_gallery_arts gallery
-  #   return [] if gallery.nil?
-  #   arts = Dir["app/assets/images/galleries/#{gallery.folder}/*"]
-  #   arts.map! { |a| "galleries/#{gallery.folder}/#{a[/[^\/]+?\.\w+?$/]}" }.sort
-  # end
-
   def get_image_path folder, path, size
     "assets/galleries/#{folder}/#{size}/" + path[/[^\/]+?\.\w+?$/]
   end
@@ -32,4 +26,43 @@ module GalleriesHelper
 
     "[#{images.map { |image| "'" + (get_image_path gallery.folder, image, size) + "'" }.sort.join(', ')}]".html_safe
   end
+
+  def gallery_lister(galleries, active_gallery)
+    active_gallery_index = -1
+
+    lister_html = galleries.each_with_index.inject("") do |acc, (g, i)| 
+      is_active = active_gallery.id == g.id
+      active_gallery_index = i if is_active
+      klass = 'link load-g link-to-gallery' + (is_active ? ' active-g' : '')
+      onclick = ""
+
+      acc << "<p>#{ link_to g.name, g, :id => "g#{g.id}", :class => klass, :onclick => onclick, :remote => true }</p>"
+    end
+
+    prev_index = prev_cycled galleries.length, active_gallery_index
+    next_index = next_cycled galleries.length, active_gallery_index
+
+    prev_gallery = galleries[prev_index]
+    next_gallery = galleries[next_index]
+    up = link_to prev_gallery, :id => "up", :class => "load-g arrow-to-gallery", :next => "#{prev_index}", :remote => true do
+      image_tag 'up.png'
+    end
+    down = link_to next_gallery, :id => "down", :class => "load-g arrow-to-gallery", :next => "#{next_index}",:remote => true do
+      image_tag 'down.png'
+    end
+
+    up + lister_html.html_safe + down
+  end
+
+  private
+
+    def next_cycled(list_length, current_index)
+      raise "Too big index (next_cycled)" if current_index >= list_length
+      current_index == list_length - 1 ? 0 : current_index + 1
+    end
+
+    def prev_cycled(list_length, current_index)
+      raise "Too small index (prev_cycled)" if current_index < 0
+      current_index == 0 ? list_length - 1 : current_index - 1
+    end
 end

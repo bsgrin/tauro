@@ -1,11 +1,4 @@
 <% if @galleries && !@galleries.empty? && !@gallery_to_show.nil? %>
-  <!-- <div class="side-menu">
-    <div class="inner">
-      <% @galleries.each do |g| %>
-        <p><%= link_to g.name, g, :class => 'link link-to-gallery', :remote => true %></p>
-      <% end %>
-    </div>
-  </div> -->
 
   <div id="gallery">
     <%= render 'layouts/galleries/gallery' %>
