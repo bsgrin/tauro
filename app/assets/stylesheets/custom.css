@@ -89,8 +89,28 @@ hr {
     background: black;
 }
 
-.gallery-grid, .content {
+.side-bar {
+    top: 238px;
+}
+
+.side-bar .inner {
+    height: 180px;
+}
+
+.side-bar-container {
+    height: 360px;
+    overflow: hidden;
+}
+
+#up, #down {
+    height: 20px;
+}
+
+.gallery-grid, .content, .side-bar {
     height: 400px;
+}
+
+.gallery-grid, .content {
     display: table;
 }
 

@@ -1,21 +1,7 @@
 <% if @galleries && !@galleries.empty? && !@gallery_to_show.nil? %>
   <div class="side-bar">
-    <div class="inner">
+    <!-- <div class="side-bar-container"> -->
       <%= gallery_lister(@galleries, @gallery_to_show).html_safe %>
-    </div>
+    <!-- </div> -->
   </div>
-
-  <script type="text/javascript">
-    function totalHeight (node) {
-      // node = $(node)
-      return parseInt(node.css('height')) + parseInt(node.css('margin-top')) + parseInt(node.css('margin-bottom'))
-    }
-
-    var sideBar = $('.side-bar')
-    var sideBarTop = totalHeight($('#logo')) + totalHeight($('header')) + totalHeight($('.content')) / 2 - 
-      totalHeight(sideBar) / 2
-
-    sideBar.css('top', sideBarTop)
-  </script>
-
 <% end %>

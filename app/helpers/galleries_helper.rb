@@ -51,7 +51,7 @@ module GalleriesHelper
       image_tag 'down.png'
     end
 
-    up + lister_html.html_safe + down
+    up + "<div class=\"side-bar-container\"><div class=\"inner\">#{lister_html}</div></div>".html_safe + down
   end
 
   private

@@ -1,4 +1,8 @@
 <script type="text/javascript">
+
+  function totalHeight (node) {
+    return parseInt(node.css('height')) + parseInt(node.css('margin-top')) + parseInt(node.css('margin-bottom'))
+  }
   
   //handles fading of the thumbnails
   function fadeElem(elems, index) {
@@ -81,6 +85,8 @@
       prevGallery = linksToGalleries[prevIndex], nextGallery = linksToGalleries[nextIndex]
     up.attr('next', prevGalleryIndex(index)).attr('href', "galleries/" + prevGallery.id.slice(1))
     down.attr('next', nextGalleryIndex(index)).attr('href', "galleries/" + nextGallery.id.slice(1))
+
+    $(".side-bar .inner").css('margin-top', 180 - totalHeight( $(linksToGalleries[prevIndex]).parent() ) * index)
   }
 
   function nextGalleryIndex(index) {
@@ -91,22 +97,34 @@
     return index == 0 ? $('.link-to-gallery').length - 1 : index - 1
   }
 
+  function adjustSideBarAjaxCompleted(activeControl) {
+    var target = $(activeControl)
+    var targetClasses = target.attr('class').split(/\s+/)
+    if (targetClasses.indexOf('link-to-gallery') != -1) {
+      var linksToGalleries = $('.link-to-gallery')
+      var ids = []
+      $.each(linksToGalleries, function(i) { ids.push(linksToGalleries[i].id) })
+      var next = ids.indexOf(activeControl.id)
+    } else if (targetClasses.indexOf('arrow-to-gallery') != -1)
+      var next = parseInt(target.attr('next'))
+    makeActive(next)
+  }
+
   $(function () {
     adjustWidths()
 
-    $('.load-g').on("ajax:complete", function (xhr, status, error) {
-      // linksToGalleries.removeClass('active-g')
-      var target = $(this)
-      var targetClasses = target.attr('class').split(/\s+/)
-      if (targetClasses.indexOf('link-to-gallery') != -1) {
-        var linksToGalleries = $('.link-to-gallery')
-        var ids = []
-        $.each(linksToGalleries, function(i) { ids.push(linksToGalleries[i].id) })
-        var next = ids.indexOf(this.id)
-      } else if (targetClasses.indexOf('arrow-to-gallery') != -1)
-        var next = parseInt(target.attr('next'))
-      makeActive(next)
-    })
+    var linksToGalleries = $('.link-to-gallery')
+    var activeLink = $('.active-g')
+    var ids = []
+    $.each(linksToGalleries, function(i) { ids.push(linksToGalleries[i].id) })
+    var activeIndex = ids.indexOf(activeLink.attr('id'))
+    $(".side-bar .inner").css('margin-top', 180 - totalHeight( $(linksToGalleries[prevGalleryIndex(activeIndex)]).parent() ) * activeIndex)
+
+    $('.load-g').on("ajax:complete", function (xhr, status, error) { adjustSideBarAjaxCompleted(this) })
   })
+
+  $(window).bind('load', function() {
+
+  });
 
 </script>
