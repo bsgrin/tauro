@@ -30,7 +30,7 @@ module GalleriesHelper
   def gallery_lister(galleries, active_gallery)
     active_gallery_index = -1
 
-    onclick = "adjustSideBarAjaxCompleted(this);"
+    onclick = ""
     lister_html = galleries.each_with_index.inject("") do |acc, (g, i)| 
       is_active = active_gallery.id == g.id
       active_gallery_index = i if is_active
@@ -44,10 +44,10 @@ module GalleriesHelper
 
     prev_gallery = galleries[prev_index]
     next_gallery = galleries[next_index]
-    up = link_to prev_gallery, :id => "up", :onclick => onclick, :class => "load-g arrow-to-gallery", :next => "#{prev_index}", :remote => true do
+    up = link_to prev_gallery, :id => "up", :class => "load-g arrow-to-gallery", :next => "#{prev_index}", :remote => true do
       image_tag 'up.png'
     end
-    down = link_to next_gallery, :id => "down", :onclick => onclick, :class => "load-g arrow-to-gallery", :next => "#{next_index}",:remote => true do
+    down = link_to next_gallery, :id => "down", :class => "load-g arrow-to-gallery", :next => "#{next_index}",:remote => true do
       image_tag 'down.png'
     end
 
