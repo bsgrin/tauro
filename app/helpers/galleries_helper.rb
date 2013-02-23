@@ -30,11 +30,11 @@ module GalleriesHelper
   def gallery_lister(galleries, active_gallery)
     active_gallery_index = -1
 
-    onclick = ""
     lister_html = galleries.each_with_index.inject("") do |acc, (g, i)| 
       is_active = active_gallery.id == g.id
       active_gallery_index = i if is_active
       klass = 'link load-g link-to-gallery' + (is_active ? ' active-g' : '')
+      onclick = ""
 
       acc << "<p>#{ link_to g.name, g, :id => "g#{g.id}", :class => klass, :onclick => onclick, :remote => true }</p>"
     end
