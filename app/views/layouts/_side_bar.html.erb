@@ -1,7 +1,5 @@
 <% if @galleries && !@galleries.empty? && !@gallery_to_show.nil? %>
   <div class="side-bar">
-    <!-- <div class="side-bar-container"> -->
       <%= gallery_lister(@galleries, @gallery_to_show).html_safe %>
-    <!-- </div> -->
   </div>
 <% end %>

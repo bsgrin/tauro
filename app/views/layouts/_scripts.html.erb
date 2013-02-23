@@ -86,7 +86,7 @@
     up.attr('next', prevGalleryIndex(index)).attr('href', "galleries/" + prevGallery.id.slice(1))
     down.attr('next', nextGalleryIndex(index)).attr('href', "galleries/" + nextGallery.id.slice(1))
 
-    $(".side-bar .inner").css('margin-top', 180 - totalHeight( $(linksToGalleries[prevIndex]).parent() ) * index)
+    $(".side-bar .inner").animate({'margin-top': 180 - totalHeight( $(linksToGalleries[prevIndex]).parent() ) * index}, 100)
   }
 
   function nextGalleryIndex(index) {
@@ -118,9 +118,9 @@
     var ids = []
     $.each(linksToGalleries, function(i) { ids.push(linksToGalleries[i].id) })
     var activeIndex = ids.indexOf(activeLink.attr('id'))
-    $(".side-bar .inner").css('margin-top', 180 - totalHeight( $(linksToGalleries[prevGalleryIndex(activeIndex)]).parent() ) * activeIndex)
+    $(".side-bar .inner").animate({'margin-top': 180 - totalHeight( $(linksToGalleries[prevGalleryIndex(activeIndex)]).parent() ) * activeIndex}, 100)
 
-    $('.load-g').on("ajax:complete", function (xhr, status, error) { adjustSideBarAjaxCompleted(this) })
+    // $('.load-g').on("ajax:complete", function (xhr, status, error) { adjustSideBarAjaxCompleted(this) })
   })
 
   $(window).bind('load', function() {
