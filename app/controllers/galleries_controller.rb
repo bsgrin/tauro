@@ -14,7 +14,7 @@ class GalleriesController < ApplicationController
   private
 
     def get_galleries_and_show params
-      @galleries = Gallery.all
+      @galleries = Gallery.all.sort { |g1, g2| g1.name <=> g2.name }
       @gallery_to_show = params[:with_id] == :random ? Gallery.all.sample : Gallery.find(params[:with_id])
     end
 end
