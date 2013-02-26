@@ -51,7 +51,8 @@ module GalleriesHelper
       image_tag 'down.png'
     end
 
-    up + "<div class=\"side-bar-container\"><div class=\"inner\">#{lister_html}</div></div>".html_safe + down
+    venzel = image_tag('venzel.png').html_safe
+    up + "<div class=\"side-bar-container\"><div class=\"inner\">#{venzel}<div>#{lister_html.html_safe}</div>#{venzel}</div></div>".html_safe + down
   end
 
   private

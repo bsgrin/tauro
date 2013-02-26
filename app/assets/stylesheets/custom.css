@@ -108,12 +108,15 @@ hr {
     overflow: hidden;
 }
 
+.side-bar-container .inner div p:last-child {
+    margin-bottom: 0px;
+}
+
 #up, #down {
     height: 20px;
 }
 
 .load-g:link, .load-g:visited, .load-g:active, .load-g:hover {
-    /*color: rgb(58, 53, 53);*/
     color: gray;
     font-weight: bold;
     text-decoration: none;
