@@ -113,7 +113,8 @@ hr {
 }
 
 .load-g:link, .load-g:visited, .load-g:active, .load-g:hover {
-    color: rgb(58, 53, 53);
+    /*color: rgb(58, 53, 53);*/
+    color: gray;
     font-weight: bold;
     text-decoration: none;
     font-family: Century Gothic, Arial;
