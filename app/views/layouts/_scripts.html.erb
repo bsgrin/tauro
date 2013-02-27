@@ -76,17 +76,19 @@
     $('.side-bar').css('width', left)
   }
 
-  function makeActive(index) {
+  function makeActive(index, arrowClick) {
     var linksToGalleries = $('.link-to-gallery')
-    linksToGalleries.removeClass('active-g')
-    var target = $(linksToGalleries[index])
-    target.addClass('active-g')
+    if (!arrowClick) {
+      linksToGalleries.removeClass('active-g')
+      var target = $(linksToGalleries[index])
+      target.addClass('active-g')
+    }
     var up = $('#up'), down = $('#down'), prevIndex = prevGalleryIndex(index), nextIndex = nextGalleryIndex(index)
       prevGallery = linksToGalleries[prevIndex], nextGallery = linksToGalleries[nextIndex]
-    up.attr('next', prevGalleryIndex(index)).attr('href', "galleries/" + prevGallery.id.slice(1))
-    down.attr('next', nextGalleryIndex(index)).attr('href', "galleries/" + nextGallery.id.slice(1))
-
-    $(".side-bar .inner").animate({'margin-top': 0 - totalHeight( $(linksToGalleries[prevIndex]).parent() ) * index}, 300)
+    up.attr('next', prevGalleryIndex(index)).attr('href', "galleries/" + prevGallery.id.slice(1)).attr('onclick', 'makeActive(' + prevIndex + ', true)')
+    down.attr('next', nextGalleryIndex(index)).attr('href', "galleries/" + nextGallery.id.slice(1)).attr('onclick', 'makeActive(' + nextIndex + ', true)')
+    var newMargin = -totalHeight( $(linksToGalleries[prevIndex]).parent() ) * (index)
+    $(".side-bar .inner").animate({'margin-top': newMargin}, 300)
   }
 
   function nextGalleryIndex(index) {

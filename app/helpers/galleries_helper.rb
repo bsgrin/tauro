@@ -44,14 +44,12 @@ module GalleriesHelper
 
     prev_gallery = galleries[prev_index]
     next_gallery = galleries[next_index]
-    up = link_to prev_gallery, :id => "up", :class => "load-g arrow-to-gallery", :next => "#{prev_index}", :remote => true do
-      image_tag 'up.png'
-    end
-    down = link_to next_gallery, :id => "down", :class => "load-g arrow-to-gallery", :next => "#{next_index}",:remote => true do
-      image_tag 'down.png'
-    end
+    up = image_tag 'up.png', :class => "load-g arrow-to-gallery", :id => 'up', :alt => '',
+      :next => "#{prev_index}", :onclick => "makeActive(#{prev_index}, true)"
+    down = image_tag 'down.png', :class => "load-g arrow-to-gallery", :id => 'down', :alt => '',
+      :next => "#{next_index}", :onclick => "makeActive(#{next_index}, true)"
 
-    venzel = image_tag('venzel.png').html_safe
+    venzel = '<div class="venzel"></div>'
     up + "<div class=\"side-bar-container\"><div class=\"inner\">#{venzel}<div>#{lister_html.html_safe}</div>#{venzel}</div></div>".html_safe + down
   end
 

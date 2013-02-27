@@ -109,11 +109,22 @@ hr {
 }
 
 .side-bar-container .inner div p:last-child {
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
 #up, #down {
     height: 20px;
+}
+
+#up:hover, #down:hover {
+    cursor: pointer;
+}
+
+.venzel {
+    background: url('venzel.png');
+    height: 180px;
+    width: 75px;
+    margin: 0 auto;
 }
 
 .load-g:link, .load-g:visited, .load-g:active, .load-g:hover {
