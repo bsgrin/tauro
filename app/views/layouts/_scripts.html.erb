@@ -87,7 +87,8 @@
       prevGallery = linksToGalleries[prevIndex], nextGallery = linksToGalleries[nextIndex]
     up.attr('next', prevGalleryIndex(index)).attr('href', "galleries/" + prevGallery.id.slice(1)).attr('onclick', 'makeActive(' + prevIndex + ', true)')
     down.attr('next', nextGalleryIndex(index)).attr('href', "galleries/" + nextGallery.id.slice(1)).attr('onclick', 'makeActive(' + nextIndex + ', true)')
-    var newMargin = -totalHeight( $(linksToGalleries[prevIndex]).parent() ) * (index)
+    var block = index != 0 ? $(linksToGalleries[0]) : $(linksToGalleries[1])
+    var newMargin = -totalHeight( block.parent() ) * (index)
     $(".side-bar .inner").animate({'margin-top': newMargin}, 300)
   }
 
