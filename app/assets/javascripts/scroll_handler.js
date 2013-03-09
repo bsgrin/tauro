@@ -18,13 +18,13 @@ var ScrollHandler //singleton constructor
     //Calculates margin that should have element at the target index
     var getMarginForIndex = function (index) {
       var linksToGalleries = $('.link-to-gallery')
-      var block = index != 0 ? $(linksToGalleries[0]) : $(linksToGalleries[1])
-      var newMargin = -totalHeight( block.parent() ) * (index)
+      var nonActiveBlock = $( linksToGalleries.not('.active-g')[0] )
+      var newMargin = -totalHeight( nonActiveBlock.parent() ) * (index)
       return newMargin
     }
     //Moves sidebar to 
     var scrollSidebar = function (toMargin) {
-      $('.side-bar .inner').animate({ 'margin-top': toMargin }, 200)
+      $('.side-bar .inner').animate({ 'margin-top': toMargin }, self.pauseInterval)
     }
 
     var scrollToIndex = function (toIndex) {
@@ -58,6 +58,7 @@ var ScrollHandler //singleton constructor
     var self = this
     this.activeIndex = getActiveIndex()
     this.mouseUp = false
+    this.pauseInterval = 200
 
     return instance = this
 

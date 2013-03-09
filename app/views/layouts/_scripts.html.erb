@@ -82,7 +82,7 @@
     var scrollHandler = new ScrollHandler()
     if (!scrollHandler.mouseUp) {
       scrollHandler.up()
-      setTimeout(function() { clickUp(e, scrollHandler) }, 200)
+      setTimeout(function() { clickUp(e, scrollHandler) }, scrollHandler.pauseInterval)
     }
   }
   function clickDown(e) {
@@ -91,7 +91,7 @@
     var scrollHandler = new ScrollHandler()
     if (!scrollHandler.mouseUp) {
       scrollHandler.down()
-      setTimeout(function() { clickDown(e, scrollHandler) }, 200)
+      setTimeout(function() { clickDown(e, scrollHandler) }, scrollHandler.pauseInterval)
     }
   }
 
@@ -120,10 +120,6 @@
     }).mousedown(function (event) { 
       scrollHandler.mouseUp = false
       clickDown(event, scrollHandler);
-    })
-
-    $('.side-bar-container').scroll(function(a, b) {
-      console.log('scroll happened')
     })
 
     $(window).mouseup(function () {

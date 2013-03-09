@@ -96,7 +96,7 @@ hr {
 }
 
 .side-bar {
-    top: 227px;
+    top: 232px;
 }
 
 .side-bar .inner {
@@ -104,7 +104,7 @@ hr {
 }
 
 .side-bar-container {
-    height: 382px;
+    height: 400px;
     overflow: hidden;
 }
 
@@ -113,7 +113,7 @@ hr {
 }
 
 #up, #down {
-    height: 20px;
+    height: 8px;
     width: 100px;
     margin: 0 auto;
 }
@@ -128,7 +128,6 @@ hr {
 
 #down {
     background: url('down.png');
-    margin-top: 5px; /* corrected top margin for arrow */
 }
 
 .venzel {
@@ -136,6 +135,8 @@ hr {
     height: 180px;
     width: 75px;
     margin: 0 auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .load-g:link, .load-g:visited, .load-g:active, .load-g:hover {
