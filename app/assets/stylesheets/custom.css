@@ -128,6 +128,7 @@ hr {
 
 #down {
     background: url('down.png');
+    margin-top: 5px; /* corrected top margin for arrow */
 }
 
 .venzel {
