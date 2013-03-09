@@ -7,6 +7,6 @@ Tauro::Application.routes.draw do
 
   ActiveAdmin.routes(self)
   devise_for :admin_users, ActiveAdmin::Devise.config
-  match '/contacts', :to => 'pages#contacts'
+  match '/info', :to => 'pages#info'
   root :to => 'pages#home'
 end

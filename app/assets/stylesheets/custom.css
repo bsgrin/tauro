@@ -15,6 +15,14 @@ body {
     src: url('../fonts/CenturyGothic.ttf');
 }
 
+.cover {
+    position: relative;
+}
+
+.watersign {
+    position: relative;
+}
+
 .container {
 	text-align: center;
     font-family: 'Century Gothic', 'Georgia', serif;
@@ -40,7 +48,7 @@ nav ul {
     padding: 0;
 }
 
-nav ul li, .contacts {
+nav ul li, .info-block {
     font-size: 16px;
 }
 
@@ -174,7 +182,7 @@ hr {
     display: block;
 }
 
-.contacts {
+.info-block {
     line-height: 4em;
     text-align: center;
 }

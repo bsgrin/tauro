@@ -10,6 +10,6 @@ class PagesController < ApplicationController
   # def production
   # end
 
-  def contacts
+  def info
   end
 end

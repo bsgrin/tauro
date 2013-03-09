@@ -1,7 +1,7 @@
-<div class="vcentered">
+<div class="vcentered covers">
     <%= link_to galleries_path do %>
       <% @img_slides.each do |slide| %>
-        <div id="<%= slide.name %>" style="display:none;">
+        <div id="<%= slide.name %>" style="display:none;" class="cover">
           <%= image_tag slide.source.url, :alt => slide.alt %>
         </div>
       <% end %>
