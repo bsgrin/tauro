@@ -67,7 +67,7 @@
       document.preloaded_images[galleryID].push(image)
     })
   }
-
+  
   //adjust LEFT of the main container and WIDTH of side bar
   function adjustWidths() {
     var container = $('#container')
@@ -76,58 +76,63 @@
     $('.side-bar').css('width', left)
   }
 
-  function makeActive(index, arrowClick) {
-    var linksToGalleries = $('.link-to-gallery')
-    if (!arrowClick) {
-      linksToGalleries.removeClass('active-g')
-      var target = $(linksToGalleries[index])
-      target.addClass('active-g')
+  function clickUp(e) {
+    if (e.button !== 0)
+      return;
+    var scrollHandler = new ScrollHandler()
+    if (!scrollHandler.mouseUp) {
+      scrollHandler.up()
+      setTimeout(function() { clickUp(e, scrollHandler) }, 200)
     }
-    var up = $('#up'), down = $('#down'), prevIndex = prevGalleryIndex(index), nextIndex = nextGalleryIndex(index)
-      prevGallery = linksToGalleries[prevIndex], nextGallery = linksToGalleries[nextIndex]
-    up.attr('next', prevGalleryIndex(index)).attr('href', "galleries/" + prevGallery.id.slice(1)).attr('onclick', 'makeActive(' + prevIndex + ', true)')
-    down.attr('next', nextGalleryIndex(index)).attr('href', "galleries/" + nextGallery.id.slice(1)).attr('onclick', 'makeActive(' + nextIndex + ', true)')
-    var block = index != 0 ? $(linksToGalleries[0]) : $(linksToGalleries[1])
-    var newMargin = -totalHeight( block.parent() ) * (index)
-    $(".side-bar .inner").animate({'margin-top': newMargin}, 300)
   }
-
-  function nextGalleryIndex(index) {
-    return index == $('.link-to-gallery').length - 1 ? 0 : index + 1
-  }
-
-  function prevGalleryIndex(index) {
-    return index == 0 ? $('.link-to-gallery').length - 1 : index - 1
+  function clickDown(e) {
+    if (e.button !== 0)
+      return;
+    var scrollHandler = new ScrollHandler()
+    if (!scrollHandler.mouseUp) {
+      scrollHandler.down()
+      setTimeout(function() { clickDown(e, scrollHandler) }, 200)
+    }
   }
 
   function adjustSideBarAjaxCompleted(activeControl) {
-    var target = $(activeControl)
-    var targetClasses = target.attr('class').split(/\s+/)
-    if (targetClasses.indexOf('link-to-gallery') != -1) {
-      var linksToGalleries = $('.link-to-gallery')
-      var ids = []
-      $.each(linksToGalleries, function(i) { ids.push(linksToGalleries[i].id) })
-      var next = ids.indexOf(activeControl.id)
-    } else if (targetClasses.indexOf('arrow-to-gallery') != -1)
-      var next = parseInt(target.attr('next'))
-    makeActive(next)
+    var scrollHandler = new ScrollHandler()
+    $('.link-to-gallery').removeClass('active-g')
+    $(activeControl).addClass('active-g')
+    scrollHandler.toActive()
   }
 
   $(function () {
     adjustWidths()
+    var scrollHandler = new ScrollHandler()
+    scrollHandler.toActive()
 
-    var linksToGalleries = $('.link-to-gallery')
-    var activeLink = $('.active-g')
-    var ids = []
-    $.each(linksToGalleries, function(i) { ids.push(linksToGalleries[i].id) })
-    var activeIndex = ids.indexOf(activeLink.attr('id'))
-    $(".side-bar .inner").animate({'margin-top': 0 - totalHeight( $(linksToGalleries[prevGalleryIndex(activeIndex)]).parent() ) * activeIndex}, 300)
 
-    $('.load-g').on("ajax:complete", function (xhr, status, error) { adjustSideBarAjaxCompleted(this) })
+    $('#up').mouseup(function () { 
+      scrollHandler.mouseUp = true 
+    }).mousedown(function (event) {
+      scrollHandler.mouseUp = false
+      clickUp(event, scrollHandler)
+    })
+
+    $('#down').mouseup(function () { 
+      scrollHandler.mouseUp = true
+    }).mousedown(function (event) { 
+      scrollHandler.mouseUp = false
+      clickDown(event, scrollHandler);
+    })
+
+    $('.side-bar-container').scroll(function(a, b) {
+      console.log('scroll happened')
+    })
+
+    $(window).mouseup(function () {
+      scrollHandler.mouseUp = true;
+    })
+
+    $('.load-g').on("ajax:complete", function (xhr, status, error) {
+      adjustSideBarAjaxCompleted(this) 
+    })
   })
-
-  $(window).bind('load', function() {
-
-  });
 
 </script>

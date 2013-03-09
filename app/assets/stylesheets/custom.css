@@ -114,10 +114,20 @@ hr {
 
 #up, #down {
     height: 20px;
+    width: 100px;
+    margin: 0 auto;
 }
 
 #up:hover, #down:hover {
     cursor: pointer;
+}
+
+#up {
+    background: url('up.png');
+}
+
+#down {
+    background: url('down.png');
 }
 
 .venzel {
