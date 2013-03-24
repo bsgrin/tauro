@@ -6,6 +6,7 @@ ActiveAdmin.register ImageSlide do
       f.input :source, :as => :file
       f.input :alt
       f.input :priority
+      f.input :href
     end
     f.buttons
   end

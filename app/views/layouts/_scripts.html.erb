@@ -102,33 +102,8 @@
     scrollHandler.toActive()
   }
 
-  function attachCover() {
-    var divs = $('.cover')
-    var watersign = $('<%= (image_tag "cover.png", :class => "watersign").html_safe %>')
-    if (divs) {
-      divs.on('mouseenter', function () {
-        var div = $(this)
-        if ($('.watersign', div).length)
-          return;
-        var img = $('img', div)
-        div.append(watersign).css('background-image', 'url(' + img.attr('src') + ')')
-        img.remove()
-      }).on('mouseleave', function () {
-        var div = $(this)
-        if (!$('.watersign', div).length)
-          return;
-        var img = $('img', div)
-        var newCover = $(new Image())
-        newCover.attr('src', div.css('background-image').replace('url(', '').replace(')', '')).addClass('cover')
-        div.append(newCover).css('background-image', '')
-        $('.watersign').remove()
-      })
-    }
-  }
-
   $(function () {
     adjustWidths()
-    attachCover()
     var scrollHandler = new ScrollHandler()
     scrollHandler.toActive()
 

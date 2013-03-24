@@ -15,18 +15,60 @@ body {
     src: url('../fonts/CenturyGothic.ttf');
 }
 
-.cover {
-    position: relative;
-}
-
-.watersign {
-    position: relative;
-}
-
 .container {
 	text-align: center;
     font-family: 'Century Gothic', 'Georgia', serif;
     position: absolute;
+}
+
+.covers div {
+    overflow: hidden;
+    display: block;
+    position: relative;
+}
+
+.cover {
+    position: absolute;
+    /*position: relative;*/
+    /*top: 0px;*/
+    /*z-index: 1;*/
+    /*width: 849px;*/
+}
+
+#left_slide, #right_slide {
+    background-color: rgba(26, 24, 24, 0.24);
+    z-index: 2;
+    top: 0px;
+    height: 390px;
+}
+
+#left_slide div, #right_slide div {
+    background-repeat: no-repeat;
+    height: 24px;
+    width: 20px;
+    margin-right: 15px;
+    margin-left: 15px;
+    margin-top: 188px;
+    margin-bottom: 188px;
+}
+
+#left_slide div {
+    background-image: url(left.png);
+}
+
+#right_slide div {
+    background-image: url(right.png);
+}
+
+#left_slide {
+    position: absolute;
+    float: left;
+}
+
+#right_slide {
+    position: absolute;
+    left: 799px;
+    float: right;
 }
 
 .side-bar {
@@ -66,7 +108,7 @@ nav ul li, .social ul li {
 }
 
 .social ul li a div {
-    background-size: contain;
+    /*background-size: contain;*/
     background: url("social.png");
     width: 24px;
     height: 24px;

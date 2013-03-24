@@ -1,16 +1,26 @@
 <div class="vcentered covers">
-    <%= link_to galleries_path do %>
+  <div>
+    <div id="left_slide">
+      <div></div>
+    </div>
+    <div id="right_slide">
+      <div></div>
+    </div>
+    <div>
       <% @img_slides.each do |slide| %>
-        <div id="<%= slide.name %>" style="display:none;" class="cover">
-          <%= image_tag slide.source.url, :alt => slide.alt %>
-        </div>
+        <% href = slide.href || galleries_path %>
+        <%= link_to href do %>
+          <div id="<%= slide.name %>" style="display:none;" class="cover">
+            <%= image_tag slide.source.url, :alt => slide.alt, :title => slide.alt %>
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
+  </div>
 </div>
 
 <script type="text/javascript">
 
-//carousel
-fadeElem( $('.content > .vcentered > a > div'), 0 );
+fadeElem( $('.cover'), 0 );
 
 </script>
