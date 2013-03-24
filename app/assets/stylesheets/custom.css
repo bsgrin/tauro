@@ -42,6 +42,10 @@ body {
     height: 390px;
 }
 
+#left_slide:hover, #right_slide:hover {
+    background-color: rgba(26, 24, 24, 0.12);
+}
+
 #left_slide div, #right_slide div {
     background-repeat: no-repeat;
     height: 24px;
