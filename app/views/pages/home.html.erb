@@ -6,21 +6,23 @@
     <div id="right_slide">
       <div></div>
     </div>
-    <div>
-      <% @img_slides.each do |slide| %>
-        <% href = slide.href || galleries_path %>
-        <%= link_to href do %>
-          <div id="<%= slide.name %>" style="display:none;" class="cover">
-            <%= image_tag slide.source.url, :alt => slide.alt, :title => slide.alt %>
+    <div id="image_outer">
+      <div id="image_slides">
+        <% @img_slides.each_with_index do |slide, i| %>
+          <% href = slide.href || galleries_path %>
+          <div id="<%= slide.name %>" style="left: <%= i * 849 %>px; top: <%= -i * 390 %>px;" class="cover">
+            <%= link_to href do %>
+              <%= image_tag slide.source.url, :alt => slide.alt, :title => slide.alt %>
+            <% end %>
           </div>
         <% end %>
-      <% end %>
+      </div>
     </div>
   </div>
 </div>
 
 <script type="text/javascript">
 
-fadeElem( $('.cover'), 0 );
+// fadeElem( $('.cover'), 0 );
 
 </script>

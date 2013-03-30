@@ -102,6 +102,25 @@
     scrollHandler.toActive()
   }
 
+  function checkArrowsAvailability() {
+    var imageSlides = $('#image_slides')
+    var imageSlidesLeft = parseInt(imageSlides.css('left'))
+    if (imageSlidesLeft === 0) {
+      $('#left_slide').css('display', 'none')
+      $('#right_slide').css('display', 'block')
+      return;
+    } 
+    var covers = $('.cover')
+    var cover = $(covers[0])
+    if (imageSlidesLeft === -cover.width() * (covers.length - 1)) {
+      $('#left_slide').css('display', 'block')
+      $('#right_slide').css('display', 'none')
+      return;
+    }
+    $('#left_slide').css('display', 'block')
+    $('#right_slide').css('display', 'block')
+  }
+
   $(function () {
     adjustWidths()
     var scrollHandler = new ScrollHandler()
@@ -112,7 +131,7 @@
       scrollHandler.mouseUp = true 
     }).mousedown(function (event) {
       scrollHandler.mouseUp = false
-      clickUp(event, scrollHandler)
+      clickUp(erecalculateWidthsForCoversvent, scrollHandler)
     })
 
     $('#down').mouseup(function () { 
@@ -125,6 +144,36 @@
     $(window).mouseup(function () {
       scrollHandler.mouseUp = true;
     })
+
+    $('#left_slide, #right_slide').click(function () {
+      var imageSlides = $('#image_slides')
+      var covers = $('.cover')
+      var cover = $(covers[0])
+      var coeff = $(this).attr('id') == "left_slide" ? -1 : 1
+      var imageSlidesLeft = parseInt(imageSlides.css('left'))
+      var rightBorder = -cover.width() * (covers.length - 1)
+      if (imageSlidesLeft === 0) {
+        if (coeff == -1)
+          imageSlides.animate({'left': coeff * rightBorder}, 
+            function () { checkArrowsAvailability(); })
+        else
+          imageSlides.animate({'left': imageSlidesLeft - coeff * cover.width()}, 
+            function () { checkArrowsAvailability(); })
+      } else if (imageSlidesLeft === rightBorder) {
+        if (coeff == -1)
+          imageSlides.animate({'left': imageSlidesLeft - coeff * cover.width()}, 
+            function () { checkArrowsAvailability(); })
+        else
+          imageSlides.animate({'left': 0}, 
+            function () { checkArrowsAvailability(); })
+      } else {
+          imageSlides.animate({'left': imageSlidesLeft - coeff * cover.width()}, 
+            function () { checkArrowsAvailability(); })
+      }
+      
+    })
+
+    checkArrowsAvailability();
 
     $('.load-g').on("ajax:complete", function (xhr, status, error) {
       adjustSideBarAjaxCompleted(this) 

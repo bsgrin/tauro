@@ -22,9 +22,18 @@ body {
 }
 
 .covers div {
-    overflow: hidden;
     display: block;
     position: relative;
+}
+
+#image_outer {
+    overflow: hidden;
+}
+
+#image_slides {
+    height: 390px;
+    position: relative;
+    left: 0px;
 }
 
 .cover {
