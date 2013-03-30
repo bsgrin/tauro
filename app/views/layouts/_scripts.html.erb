@@ -121,6 +121,34 @@
     $('#right_slide').css('display', 'block')
   }
 
+  function moveBorderCovers (coeff) {
+    var imageSlides = $('#image_slides')
+    var covers = $('.cover')
+    var cover = $(covers[coeff == -1 ? covers.length - 1 : 0])
+    var height = cover.height()
+    var width = cover.width()
+    cover.remove()
+    if (coeff == -1) {
+      var firstCover = $(covers[0])
+      cover.css('top', parseInt(firstCover.css('top')) + height)
+        .css('left', parseInt(firstCover.css('left')) - width)
+      imageSlides.prepend(cover)
+    } else if (coeff == 1) {
+      var lastCover = $(covers[covers.length - 1])
+      cover.css('top', parseInt(lastCover.css('top')) + height)
+        .css('left', parseInt(lastCover.css('left')) - width)
+      imageSlides.append(cover)      
+    }
+    recalculateCoversLefts($('.cover'))
+    imageSlides.css('left', parseInt(imageSlides.css('left')) + coeff * width)
+  }
+
+  function recalculateCoversLefts (covers) {
+    covers.each(function (i) {
+      $(covers[i]).css('left', i * 849).css('top', -i * 390)
+    })
+  }
+
   $(function () {
     adjustWidths()
     var scrollHandler = new ScrollHandler()
@@ -145,35 +173,42 @@
       scrollHandler.mouseUp = true;
     })
 
+    $(window).on('load', function () {
+      moveBorderCovers(-1)
+    })
+
     $('#left_slide, #right_slide').click(function () {
       var imageSlides = $('#image_slides')
       var covers = $('.cover')
       var cover = $(covers[0])
       var coeff = $(this).attr('id') == "left_slide" ? -1 : 1
       var imageSlidesLeft = parseInt(imageSlides.css('left'))
-      var rightBorder = -cover.width() * (covers.length - 1)
-      if (imageSlidesLeft === 0) {
-        if (coeff == -1)
-          imageSlides.animate({'left': coeff * rightBorder}, 
-            function () { checkArrowsAvailability(); })
-        else
+      // var rightBorder = -cover.width() * (covers.length - 1)
+      // if (imageSlidesLeft === 0) {
+      //   if (coeff == -1)
+      //     imageSlides.animate({'left': coeff * rightBorder}, 
+      //       function () { checkArrowsAvailability(); })
+      //   else
+      //     imageSlides.animate({'left': imageSlidesLeft - coeff * cover.width()}, 
+      //       function () { checkArrowsAvailability(); })
+      // } else if (imageSlidesLeft === rightBorder) {
+      //   if (coeff == -1)
+      //     imageSlides.animate({'left': imageSlidesLeft - coeff * cover.width()}, 
+      //       function () { checkArrowsAvailability(); })
+      //   else
+      //     imageSlides.animate({'left': 0}, 
+      //       function () { checkArrowsAvailability(); })
+      // } else {
           imageSlides.animate({'left': imageSlidesLeft - coeff * cover.width()}, 
-            function () { checkArrowsAvailability(); })
-      } else if (imageSlidesLeft === rightBorder) {
-        if (coeff == -1)
-          imageSlides.animate({'left': imageSlidesLeft - coeff * cover.width()}, 
-            function () { checkArrowsAvailability(); })
-        else
-          imageSlides.animate({'left': 0}, 
-            function () { checkArrowsAvailability(); })
-      } else {
-          imageSlides.animate({'left': imageSlidesLeft - coeff * cover.width()}, 
-            function () { checkArrowsAvailability(); })
-      }
+            function () { 
+              // checkArrowsAvailability(); 
+              moveBorderCovers(coeff)
+            })
+      // }
       
     })
 
-    checkArrowsAvailability();
+    // checkArrowsAvailability();
 
     $('.load-g').on("ajax:complete", function (xhr, status, error) {
       adjustSideBarAjaxCompleted(this) 
