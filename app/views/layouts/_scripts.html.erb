@@ -159,7 +159,7 @@
       scrollHandler.mouseUp = true 
     }).mousedown(function (event) {
       scrollHandler.mouseUp = false
-      clickUp(erecalculateWidthsForCoversvent, scrollHandler)
+      clickUp(event, scrollHandler)
     })
 
     $('#down').mouseup(function () { 
@@ -174,8 +174,14 @@
     })
 
     $(window).on('load', function () {
+      $('#left_slide, #right_slide').css('display', 'block')
       moveBorderCovers(-1)
     })
+
+    if ($('.cover').length == 1) {
+      $('#left_slide').css('display', 'none')
+      $('#right_slide').css('display', 'none')
+    }
 
     $('#left_slide, #right_slide').click(function () {
       var imageSlides = $('#image_slides')
@@ -183,32 +189,11 @@
       var cover = $(covers[0])
       var coeff = $(this).attr('id') == "left_slide" ? -1 : 1
       var imageSlidesLeft = parseInt(imageSlides.css('left'))
-      // var rightBorder = -cover.width() * (covers.length - 1)
-      // if (imageSlidesLeft === 0) {
-      //   if (coeff == -1)
-      //     imageSlides.animate({'left': coeff * rightBorder}, 
-      //       function () { checkArrowsAvailability(); })
-      //   else
-      //     imageSlides.animate({'left': imageSlidesLeft - coeff * cover.width()}, 
-      //       function () { checkArrowsAvailability(); })
-      // } else if (imageSlidesLeft === rightBorder) {
-      //   if (coeff == -1)
-      //     imageSlides.animate({'left': imageSlidesLeft - coeff * cover.width()}, 
-      //       function () { checkArrowsAvailability(); })
-      //   else
-      //     imageSlides.animate({'left': 0}, 
-      //       function () { checkArrowsAvailability(); })
-      // } else {
-          imageSlides.animate({'left': imageSlidesLeft - coeff * cover.width()}, 
-            function () { 
-              // checkArrowsAvailability(); 
-              moveBorderCovers(coeff)
-            })
-      // }
-      
+      imageSlides.animate({'left': imageSlidesLeft - coeff * cover.width()}, 
+        function () { 
+          moveBorderCovers(coeff)
+        })
     })
-
-    // checkArrowsAvailability();
 
     $('.load-g').on("ajax:complete", function (xhr, status, error) {
       adjustSideBarAjaxCompleted(this) 
